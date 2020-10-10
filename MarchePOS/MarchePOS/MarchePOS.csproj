@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>MarchePOS</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="3.2.0" />
+    <PackageReference Include="Prism.DryIoc" Version="7.2.0.1422" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MarchePOS.Core\MarchePOS.Core.csproj" />
+    <ProjectReference Include="..\Modules\MarchePOS.Modules.ModuleName\MarchePOS.Modules.ModuleName.csproj" />
+    <ProjectReference Include="..\Modules\MarchePOS.Modules.MyRegi\MarchePOS.Modules.MyRegi.csproj" />
+    <ProjectReference Include="..\Services\MarchePOS.Services.Interfaces\MarchePOS.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\Services\MarchePOS.Services\MarchePOS.Services.csproj" />
+  </ItemGroup>
+</Project>
