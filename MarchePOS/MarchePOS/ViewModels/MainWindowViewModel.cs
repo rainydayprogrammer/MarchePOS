@@ -40,6 +40,7 @@ namespace MarchePOS.ViewModels
             _regionManager = regionManager;
             MainMenuItems = menuService.GetMainMenuItems();
             NavigateCommand = new DelegateCommand<string>(Navigate);
+            _regionManager.RequestNavigate(RegionNames.ContentRegion, "MarchePOS.Modules.MyRegi.Views.RegiControl");
         }
 
         private void Navigate(string navigatePath)

@@ -27,7 +27,7 @@ namespace MarchePOS
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             moduleCatalog.AddModule<MyRegiModule>();
-            moduleCatalog.AddModule<ModuleNameModule>();
+            //moduleCatalog.AddModule<ModuleNameModule>();
         }
     }
 }
