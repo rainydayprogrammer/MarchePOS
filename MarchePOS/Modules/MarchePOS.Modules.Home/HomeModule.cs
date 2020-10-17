@@ -1,36 +1,39 @@
 ﻿using MarchePOS.Core;
-using MarchePOS.Modules.MyRegi.Views;
+using MarchePOS.Modules.Home.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
 using MarchePOS.Services.Interfaces;
 
-namespace MarchePOS.Modules.MyRegi
+namespace MarchePOS.Modules.Home
 {
-    public class MyRegiModule : IModule
+    public class HomeModule : IModule
     {
         private readonly IRegionManager _regionManager;
         private readonly IMenuService _menuService;
-        public MyRegiModule(IRegionManager regionManager, IMenuService menuService)
+
+        public HomeModule(IRegionManager regionManager, IMenuService menuService)
         {
             _regionManager = regionManager;
             _menuService = menuService;
         }
+
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            _regionManager.RequestNavigate(RegionNames.ContentRegion, "RegiControl");
+            _regionManager.RequestNavigate(RegionNames.ContentRegion, "HomeMenu");
+
             _menuService.AddMainMenuItem(new MenuItem
             {
-                Title = "レジ打ち",
-                Description = "お買い上げ商品の登録",
-                IconName = "BarcodeScan",
-                NavigatePath = "MarchePOS.Modules.MyRegi.Views.RegiControl"
+                Title = "ホーム",
+                Description = "メインメニュー",
+                IconName = "Home",
+                NavigatePath = "MarchePOS.Modules.Home.Views.HomeMenu"
             });
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<RegiControl>();
+            containerRegistry.RegisterForNavigation<HomeMenu>();
         }
     }
 }

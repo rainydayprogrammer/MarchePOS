@@ -11,8 +11,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MarchePOS.Core\MarchePOS.Core.csproj" />
-    <ProjectReference Include="..\Modules\MarchePOS.Modules.ModuleName\MarchePOS.Modules.ModuleName.csproj" />
+    <ProjectReference Include="..\Modules\MarchePOS.Modules.CashCalculator\MarchePOS.Modules.CashCalculator.csproj" />
     <ProjectReference Include="..\Modules\MarchePOS.Modules.MyRegi\MarchePOS.Modules.MyRegi.csproj" />
+    <ProjectReference Include="..\Modules\MarchePOS.Modules.Summary\MarchePOS.Modules.Summary.csproj" />
     <ProjectReference Include="..\Services\MarchePOS.Services.Interfaces\MarchePOS.Services.Interfaces.csproj" />
     <ProjectReference Include="..\Services\MarchePOS.Services\MarchePOS.Services.csproj" />
   </ItemGroup>

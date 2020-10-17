@@ -21,7 +21,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarchePOS", "MarchePOS\Marc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarchePOS.Core", "MarchePOS\MarchePOS.Core\MarchePOS.Core.csproj", "{E13467DF-EF14-42ED-8F00-8568F1C287C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarchePOS.Modules.MyRegi", "MarchePOS\Modules\MarchePOS.Modules.MyRegi\MarchePOS.Modules.MyRegi.csproj", "{EA681F5D-7F21-4621-9330-B69DAC58BB50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarchePOS.Modules.MyRegi", "MarchePOS\Modules\MarchePOS.Modules.MyRegi\MarchePOS.Modules.MyRegi.csproj", "{EA681F5D-7F21-4621-9330-B69DAC58BB50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarchePOS.Modules.CashCalculator", "MarchePOS\Modules\MarchePOS.Modules.CashCalculator\MarchePOS.Modules.CashCalculator.csproj", "{FFF16DAB-8E2D-4B8C-9FCF-B0CEA5F94AA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarchePOS.Modules.Home", "MarchePOS\Modules\MarchePOS.Modules.Home\MarchePOS.Modules.Home.csproj", "{A86CDBC7-0780-458E-8662-D4441E03DC1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarchePOS.Modules.Summary", "MarchePOS\Modules\MarchePOS.Modules.Summary\MarchePOS.Modules.Summary.csproj", "{49A22B1E-06BA-4F53-B833-B6CEEBCB30A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +63,18 @@ Global
 		{EA681F5D-7F21-4621-9330-B69DAC58BB50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA681F5D-7F21-4621-9330-B69DAC58BB50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA681F5D-7F21-4621-9330-B69DAC58BB50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFF16DAB-8E2D-4B8C-9FCF-B0CEA5F94AA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFF16DAB-8E2D-4B8C-9FCF-B0CEA5F94AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFF16DAB-8E2D-4B8C-9FCF-B0CEA5F94AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFF16DAB-8E2D-4B8C-9FCF-B0CEA5F94AA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A86CDBC7-0780-458E-8662-D4441E03DC1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A86CDBC7-0780-458E-8662-D4441E03DC1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A86CDBC7-0780-458E-8662-D4441E03DC1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A86CDBC7-0780-458E-8662-D4441E03DC1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49A22B1E-06BA-4F53-B833-B6CEEBCB30A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49A22B1E-06BA-4F53-B833-B6CEEBCB30A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49A22B1E-06BA-4F53-B833-B6CEEBCB30A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49A22B1E-06BA-4F53-B833-B6CEEBCB30A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +85,9 @@ Global
 		{350C44D5-993F-4E1D-961E-0E8757D31073} = {7B29C2C9-7198-4E91-B3CF-19FFE63C77BE}
 		{D24AD053-2172-4DE6-81A5-699BB153F930} = {7B29C2C9-7198-4E91-B3CF-19FFE63C77BE}
 		{EA681F5D-7F21-4621-9330-B69DAC58BB50} = {A8AC8CDC-DC2C-439A-9DAE-675ED5965368}
+		{FFF16DAB-8E2D-4B8C-9FCF-B0CEA5F94AA1} = {A8AC8CDC-DC2C-439A-9DAE-675ED5965368}
+		{A86CDBC7-0780-458E-8662-D4441E03DC1D} = {A8AC8CDC-DC2C-439A-9DAE-675ED5965368}
+		{49A22B1E-06BA-4F53-B833-B6CEEBCB30A4} = {A8AC8CDC-DC2C-439A-9DAE-675ED5965368}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2DF7A99-5797-4894-B167-A3934E2AB671}

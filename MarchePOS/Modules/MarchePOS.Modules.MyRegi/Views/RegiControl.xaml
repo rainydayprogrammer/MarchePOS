@@ -23,6 +23,14 @@
 
                 <DataGrid ItemsSource="{Binding CartLines}" CanUserAddRows="False" AutoGenerateColumns="False">
                     <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="削除">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
+                                              Path=DataContext.DelegateRemoveFromCart}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignFlatButton}">削除</Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn Binding="{Binding ProducerCode}" Header="生産者コード">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
@@ -55,14 +63,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTemplateColumn Header="削除">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
-                                              Path=DataContext.DelegateRemoveFromCart}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignFlatButton}">削除</Button>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+
                     </DataGrid.Columns>
                 </DataGrid>
 
@@ -89,7 +90,7 @@
             <TextBox Text="{Binding InputData}" Width="260" Margin="10" FontSize="20" />
             <Button Command="{Binding DelegateAddToCart}" Margin="20" Height="60" FontSize="20">カゴに入れる</Button>
 
-            <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Height="60" FontSize="20" Margin="20">清算する</Button>
+            <Button Command="{Binding DelegateCheckout}" Style="{StaticResource MaterialDesignRaisedAccentButton}" Height="60" FontSize="20" Margin="20">清算する</Button>
         </StackPanel>
     </Grid>
 </UserControl>

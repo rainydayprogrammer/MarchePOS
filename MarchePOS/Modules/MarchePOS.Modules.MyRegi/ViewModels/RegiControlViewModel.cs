@@ -2,6 +2,7 @@
 using MarchePOS.Services.Interfaces;
 using Prism.Commands;
 using Prism.Regions;
+using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,18 +16,27 @@ namespace MarchePOS.Modules.MyRegi.ViewModels
     public class RegiControlViewModel : RegionViewModelBase
     {
         private string _message;
-
+        private string _title;
         private string _inputData;
         private decimal _totalPrice;
         private int _totalCount;
+        private IDialogService _dialogService;
 
         public DelegateCommand DelegateAddToCart { get; private set; }
         public DelegateCommand<PurchasedItem> DelegateRemoveFromCart { get; private set; }
+
+        public DelegateCommand DelegateCheckout { get; private set; }
 
         public string Message
         {
             get { return _message; }
             set { SetProperty(ref _message, value); }
+        }
+
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
         }
 
         public string InputData
@@ -50,14 +60,12 @@ namespace MarchePOS.Modules.MyRegi.ViewModels
         public List<PurchasedItem> PurchasedItems { get; private set; }
         public ICollectionView CartLines { get; private set; }
 
-        public RegiControlViewModel(IRegionManager regionManager, IMenuService menuService) :
+        public RegiControlViewModel(IRegionManager regionManager, IDialogService dialogService) :
             base(regionManager)
         {
             Message = "レジ打ち用View";
-            menuService.AddMainMenuItem(new MenuItem { Title = "レジ打ち", Description = "お買い上げ商品の登録",
-                IconName = "Calculator",
-                NavigatePath = "MarchePOS.Modules.MyRegi.Views.RegiControl"
-            });
+
+            _dialogService = dialogService;
 
             PurchasedItems = new List<PurchasedItem>();
             CartLines = new ListCollectionView(PurchasedItems);
@@ -65,6 +73,8 @@ namespace MarchePOS.Modules.MyRegi.ViewModels
             DelegateAddToCart = new DelegateCommand(AddToCart);
 
             DelegateRemoveFromCart = new DelegateCommand<PurchasedItem>(RemoveItem);
+
+            DelegateCheckout = new DelegateCommand(ShowDialog);
         }
 
         private void AddToCart()
@@ -95,10 +105,8 @@ namespace MarchePOS.Modules.MyRegi.ViewModels
             {
                 Message = "値が正しく取得できませんでした";
             }
-            //Console.WriteLine(m.Result("${proto}${port}"));
         }
 
-        // 
         private void AddPurchasedItem(PurchasedItem purchasedItem)
         {
             PurchasedItems.Add(purchasedItem);
@@ -139,6 +147,24 @@ namespace MarchePOS.Modules.MyRegi.ViewModels
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
             //do something
+
+        }
+
+        private void ShowDialog()
+        {
+            var message = "This is a message that should be shown in the dialog.";
+            //using the dialog service as-is
+            _dialogService.ShowDialog("NotificationDialog", new DialogParameters($"message={message}"), r =>
+            {
+                if (r.Result == ButtonResult.None)
+                    Title = "Result is None";
+                else if (r.Result == ButtonResult.OK)
+                    Title = "Result is OK";
+                else if (r.Result == ButtonResult.Cancel)
+                    Title = "Result is Cancel";
+                else
+                    Title = "I Don't know what you did!?";
+            });
         }
 
 
