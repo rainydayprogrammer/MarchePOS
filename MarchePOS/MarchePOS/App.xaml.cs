@@ -32,7 +32,8 @@ namespace MarchePOS
             //moduleCatalog.AddModule<HomeModule>();
             moduleCatalog.AddModule<MyRegiModule>();
             moduleCatalog.AddModule<SummaryModule>();
-            //moduleCatalog.AddModule<CashCalculatorModule>();
+            moduleCatalog.AddModule<CashCalculatorModule>();
+            
 
         }
     }
