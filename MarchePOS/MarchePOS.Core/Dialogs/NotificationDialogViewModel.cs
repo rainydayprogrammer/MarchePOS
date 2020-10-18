@@ -20,7 +20,7 @@ namespace MarchePOS.Core.Dialogs
             set { SetProperty(ref _message, value); }
         }
 
-        private string _title = "Notification";
+        private string _title = "確認";
         public string Title
         {
             get { return _title; }

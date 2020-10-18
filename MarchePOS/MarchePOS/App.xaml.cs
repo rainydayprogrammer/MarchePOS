@@ -25,6 +25,7 @@ namespace MarchePOS
         {
             containerRegistry.RegisterSingleton<IMenuService, MenuService>();
             containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>();
+            containerRegistry.Register<IRegisterService, RegisterService>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

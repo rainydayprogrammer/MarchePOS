@@ -6,11 +6,11 @@ namespace MarchePOS.Services.Interfaces
 {
     public interface IRegisterService
     {
-        List<PurchasedItem> GetProducts();
+        bool SavePurchasedItems(List<PurchasedItem> purchasedItems);
 
-        List<PurchasedItem> GetCartProducts();
-        void AddProduct(PurchasedItem product);
+        List<PurchasedItem> GetTodayPurchasedData();
 
-        void RemoveProduct(PurchasedItem product);
+        List<PurchasedItem> GetTodayPurchasedDataByDate(DateTime targetDay);
+
     }
 }

@@ -21,6 +21,7 @@ namespace MarchePOS.Modules.MyRegi.ViewModels
         private decimal _totalPrice;
         private int _totalCount;
         private IDialogService _dialogService;
+        private IRegisterService _registerService;
 
         public DelegateCommand DelegateAddToCart { get; private set; }
         public DelegateCommand<PurchasedItem> DelegateRemoveFromCart { get; private set; }
@@ -33,11 +34,11 @@ namespace MarchePOS.Modules.MyRegi.ViewModels
             set { SetProperty(ref _message, value); }
         }
 
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
+        //public string Title
+        //{
+        //    get { return _title; }
+        //    set { SetProperty(ref _title, value); }
+        //}
 
         public string InputData
         {
@@ -60,12 +61,13 @@ namespace MarchePOS.Modules.MyRegi.ViewModels
         public List<PurchasedItem> PurchasedItems { get; private set; }
         public ICollectionView CartLines { get; private set; }
 
-        public RegiControlViewModel(IRegionManager regionManager, IDialogService dialogService) :
+        public RegiControlViewModel(IRegionManager regionManager, IDialogService dialogService, IRegisterService registerService) :
             base(regionManager)
         {
             Message = "レジ打ち用View";
 
             _dialogService = dialogService;
+            _registerService = registerService;
 
             PurchasedItems = new List<PurchasedItem>();
             CartLines = new ListCollectionView(PurchasedItems);
@@ -74,7 +76,7 @@ namespace MarchePOS.Modules.MyRegi.ViewModels
 
             DelegateRemoveFromCart = new DelegateCommand<PurchasedItem>(RemoveItem);
 
-            DelegateCheckout = new DelegateCommand(ShowDialog);
+            DelegateCheckout = new DelegateCommand(Checkout);
         }
 
         private void AddToCart()
@@ -129,12 +131,9 @@ namespace MarchePOS.Modules.MyRegi.ViewModels
 
         private void Reset()
         {
-
-        }
-
-        private void Calc()
-        {
-
+            PurchasedItems.Clear();
+            CartLines.Refresh();
+            UpdateView();
         }
 
         private void RemoveItem(PurchasedItem item)
@@ -147,23 +146,35 @@ namespace MarchePOS.Modules.MyRegi.ViewModels
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
             //do something
+            if (PurchasedItems.Count > 0)
+            {
 
+            }
         }
 
-        private void ShowDialog()
+        private void Checkout()
         {
-            var message = "This is a message that should be shown in the dialog.";
+            var message = "現在のデータを保存し、画面をクリアします";
             //using the dialog service as-is
             _dialogService.ShowDialog("NotificationDialog", new DialogParameters($"message={message}"), r =>
             {
-                if (r.Result == ButtonResult.None)
-                    Title = "Result is None";
-                else if (r.Result == ButtonResult.OK)
-                    Title = "Result is OK";
-                else if (r.Result == ButtonResult.Cancel)
-                    Title = "Result is Cancel";
-                else
-                    Title = "I Don't know what you did!?";
+                if (r.Result == ButtonResult.OK) {
+
+                    // データを保存
+
+                    bool saveresult = _registerService.SavePurchasedItems(PurchasedItems);
+
+                    if (saveresult)
+                    {
+                        Reset();
+                        Message = "データを保存しました";
+                    }
+                    else
+                    {
+                        Message = "保存に失敗しました！";
+                    }
+                    // 画面をリセット
+                } // OK 以外は何もしない（閉じるだけ）
             });
         }
 
