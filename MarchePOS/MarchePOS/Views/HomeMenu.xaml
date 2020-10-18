@@ -5,8 +5,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MarchePOS.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Grid>
-        <TextBox>Home Menu</TextBox>
+        <StackPanel>
+            <TextBlock TextAlignment="Center" Style="{StaticResource MaterialDesignHeadline3TextBlock}">メニュー</TextBlock>
+            <ItemsControl ItemsSource="{Binding HomeMenuItems}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button HorizontalAlignment="Center"
+                                Width="400"
+                                Height="100"
+                                Margin="10"
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        Command="{Binding Path=DataContext.NavigateCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="{Binding NavigatePath}">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon x:Name="PackIcon" Kind="{Binding IconName}" Height="42" Width="42" />
+                                <TextBlock Margin="6 0 0 0" Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                                   Text="{Binding Title}" />
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
     </Grid>
 </UserControl>
