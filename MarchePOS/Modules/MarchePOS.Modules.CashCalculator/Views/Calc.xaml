@@ -7,10 +7,51 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              xmlns:prism="http://prismlibrary.com/"
-             prism:ViewModelLocator.AutoWireViewModel="True" >
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Grid>
-        <TextBlock Text="{Binding Message}"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="0" ItemsSource="{Binding CountItems}" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding MoneyType}" Header="金額" IsReadOnly="True">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding MoneyCount, Mode=TwoWay}" Header="個数／枚数"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                    >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding AmountByType, Mode=OneWay}" IsReadOnly="True" Header="合計金額">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="{Binding Message}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10 20 10 20">
+                <TextBlock Text="合計：" Style="{StaticResource MaterialDesignHeadline4TextBlock}" />
+                <TextBlock Text="{Binding GrandTotal, StringFormat={}{0:N0}, Mode=OneWay}" Width="140" TextAlignment="Right" Style="{StaticResource MaterialDesignHeadline4TextBlock}"></TextBlock>
+                <TextBlock Text="円" Style="{StaticResource MaterialDesignHeadline4TextBlock}" Margin="6 0 0 0" />
+            </StackPanel>
+            <Button Command="{Binding DelegateCalcTotal}" Style="{StaticResource MaterialDesignRaisedAccentButton}" Width="240" Height="50">合計金額計算</Button>
+        </StackPanel>
+
     </Grid>
 </UserControl>

@@ -30,6 +30,10 @@ namespace MarchePOS.Modules.CashCalculator.ViewModels
             get { return CountItems.OfType<CountItem>().Sum(m => m.AmountByType); }
         }
 
+        public DelegateCommand DelegateCalcTotal { get; private set; }
+
+
+
         public CalcViewModel(IRegionManager regionManager) : base(regionManager)
         {
             Message = "現金計算用View";
@@ -46,9 +50,16 @@ namespace MarchePOS.Modules.CashCalculator.ViewModels
             });
 
             CountItems.CurrentChanged += SelectedItemChanged;
+
+            DelegateCalcTotal = new DelegateCommand(calcTotal);
         }
 
         private void SelectedItemChanged(object sender, EventArgs e)
+        {
+            RaisePropertyChanged(nameof(GrandTotal));
+        }
+
+        private void calcTotal()
         {
             RaisePropertyChanged(nameof(GrandTotal));
         }
